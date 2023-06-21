@@ -31,7 +31,7 @@ int main() {
     // Close the destination file
     fclose(destFile);
 
-    printf("File read and write operations completed.\n");
+    printf("File read and write operations are completed\n");
 
     return 0;
 }
