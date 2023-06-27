@@ -1,13 +1,14 @@
 #include <stdio.h>
 
 int main() {
-    int num = 10;       // Declare an integer variable
-    int *ptr = &num;    // Declare a pointer and initialize it with the address of 'num'
+    int num = 10;
+    int *ptr = &num;
+    int **ptrToPtr = &ptr;
 
-    printf("Value of num: %d\n", num);
-    printf("Address of num: %p\n", &num);
-    printf("Value of ptr: %p\n", ptr);
-    printf("Value stored at the address pointed by ptr: %d\n", *ptr);
+    printf("Value of num => %d\n", num);
+    printf("Value of ptr => %p\n", ptr);
+    printf("Value of ptrToPtr => %p\n", ptrToPtr);
+    printf("Value stored at the address pointed by ptrToPtr => %d\n", **ptrToPtr);
 
     return 0;
 }
