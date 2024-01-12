@@ -38,6 +38,32 @@ void insertAtEnd(struct Node** head, int value) {
     printf("Inserted %d at the end\n", value);
 }
 
+void insertAtIndex(struct Node** head, int value, int index) {
+    if (index < 0) {
+        printf("Invalid index\n");
+        return;
+    }
+    if (index == 0) {
+        insertAtBeginning(head, value);
+        return;
+    }
+
+    struct Node* newNode = createNode(value);
+    struct Node* temp = *head;
+
+    for (int i = 0; i < index - 1; ++i) {
+        if (temp == NULL) {
+            printf("Invalid index\n");
+            return;
+        }
+        temp = temp->next;
+    }
+
+    newNode->next = temp->next;
+    temp->next = newNode;
+    printf("Inserted %d at index %d\n", value, index);
+}
+
 void deleteAtBeginning(struct Node** head) {
     if (*head == NULL) {
         printf("List is empty. Cannot delete.\n");
@@ -64,6 +90,9 @@ int main() {
     insertAtBeginning(&head, 5);
     insertAtBeginning(&head, 10);
     insertAtEnd(&head, 15);
+    display(head);
+    
+    insertAtIndex(&head, 20, 1);
     display(head);
 
     deleteAtBeginning(&head);
