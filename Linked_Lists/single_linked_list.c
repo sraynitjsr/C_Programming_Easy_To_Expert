@@ -24,6 +24,20 @@ void insertAtBeginning(struct Node** head, int value) {
     printf("Inserted %d at the beginning\n", value);
 }
 
+void insertAtEnd(struct Node** head, int value) {
+    struct Node* newNode = createNode(value);
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        struct Node* temp = *head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    printf("Inserted %d at the end\n", value);
+}
+
 void deleteAtBeginning(struct Node** head) {
     if (*head == NULL) {
         printf("List is empty. Cannot delete.\n");
@@ -49,7 +63,7 @@ int main() {
 
     insertAtBeginning(&head, 5);
     insertAtBeginning(&head, 10);
-    insertAtBeginning(&head, 15);
+    insertAtEnd(&head, 15);
     display(head);
 
     deleteAtBeginning(&head);
