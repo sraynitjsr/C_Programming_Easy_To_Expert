@@ -75,6 +75,32 @@ void deleteAtBeginning(struct Node** head) {
     printf("Deleted the first node\n");
 }
 
+void deleteAtIndex(struct Node** head, int index) {
+    if (index < 0 || *head == NULL) {
+        printf("Invalid index or empty list. Cannot delete.\n");
+        return;
+    }
+    if (index == 0) {
+        deleteAtBeginning(head);
+        return;
+    }
+
+    struct Node* temp = *head;
+
+    for (int i = 0; i < index - 1; ++i) {
+        if (temp->next == NULL) {
+            printf("Invalid index\n");
+            return;
+        }
+        temp = temp->next;
+    }
+
+    struct Node* toDelete = temp->next;
+    temp->next = toDelete->next;
+    free(toDelete);
+    printf("Deleted node at index %d\n", index);
+}
+
 void display(struct Node* head) {
     printf("Linked List: ");
     while (head != NULL) {
@@ -89,13 +115,16 @@ int main() {
 
     insertAtBeginning(&head, 5);
     insertAtBeginning(&head, 10);
+    
+    insertAtEnd(&head, 65);
     insertAtEnd(&head, 15);
+    
     display(head);
     
     insertAtIndex(&head, 20, 1);
     display(head);
 
-    deleteAtBeginning(&head);
+    deleteAtIndex(&head, 2);
     display(head);
 
     return 0;
